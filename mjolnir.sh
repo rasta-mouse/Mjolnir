@@ -101,9 +101,9 @@ function mainGuess {
 	wpa_cli -i${int} reassociate > /dev/null 2>&1
 	sleep 12
 
-	netStatus=$(wpa_cli -iwlan0 status | grep wpa_state | cut -d"=" -f2)
+	netStatus=$(wpa_cli -i${int} status | grep wpa_state | cut -d"=" -f2)
 
-	if [ $netStatus == 'COMPLETED' ]; then
+	if [ "$netStatus" == "COMPLETED" ]; then
 		echo -e "${green}[+] ${nc}$ssid: $psk"
 	fi
 	
